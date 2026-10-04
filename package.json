@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "deploy": "tsc -b && vite build && cp dist/index.html dist/404.html && touch dist/.nojekyll && cd dist && git init -b gh-pages && git config user.name 'Nilay Chavhan' && git config user.email 'nilay866@users.noreply.github.com' && git add -A && git commit -m 'Deploy production build to GitHub Pages' && git remote add origin https://github.com/nilay866/portfolio.git && git push -f origin gh-pages",
+    "deploy": "tsc -b && vite build && cp dist/index.html dist/404.html && touch dist/.nojekyll && cd dist && git config user.name 'Nilay Chavhan' && git config user.email 'nilay866@users.noreply.github.com' && git add -A && git commit -m 'Deploy production build to GitHub Pages' && git push -f origin gh-pages",
     "lint": "oxlint",
     "preview": "vite preview"
   },
