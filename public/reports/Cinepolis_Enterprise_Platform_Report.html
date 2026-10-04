@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Architecture Whitepaper | Cinépolis Multi-Site Enterprise IT Platform Operations | Nilay Chavhan</title>
+  <style>
+    :root {
+      --bg: #060913;
+      --card-bg: #0d1322;
+      --card-border: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #10b981;
+      --accent-purple: #a855f7;
+      --accent-blue: #38bdf8;
+      --code-bg: #030712;
+      --code-border: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2.5rem 1.5rem;
+    }
+    .container { max-width: 1140px; margin: 0 auto; }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-title h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .header-title p { font-size: 1rem; color: #34d399; font-weight: 600; }
+    .header-meta { font-size: 0.8rem; color: var(--text-muted); text-align: right; }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 2.5rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1.4rem;
+      margin-bottom: 1.4rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .metric-box {
+      background: rgba(3, 7, 18, 0.7);
+      border: 1px solid var(--card-border);
+      padding: 1.2rem;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .metric-val { font-size: 1.6rem; font-weight: 800; color: #ffffff; }
+    .metric-lbl { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 1rem 0;
+      background: rgba(3, 7, 18, 0.4);
+    }
+    th, td { padding: 9px 12px; border: 1px solid var(--card-border); text-align: left; }
+    th { background: rgba(16, 185, 129, 0.15); color: #ffffff; font-weight: 700; }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      padding: 1.2rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+      margin: 0.8rem 0;
+    }
+    .diag-box {
+      background: #040711;
+      border: 1px solid #1e293b;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: #34d399;
+      line-height: 1.4;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .action-bar {
+      margin-top: 2.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn {
+      background: #059669;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+    }
+    .btn:hover { background: #047857; }
+    @media print {
+      body { background: #ffffff; color: #000000; padding: 0.5in; }
+      .card, .metric-box { background: #ffffff; border-color: #cbd5e1; color: #000000; }
+      pre, .diag-box { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
+      th { background: #e2e8f0; color: #0f172a; }
+      th, td { border-color: #cbd5e1; }
+      .action-bar { display: none; }
+      .badge { border: 1px solid #000; color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-title">
+        <span class="badge">Production Engineering Whitepaper • Enterprise Operations Case Study</span>
+        <h1>Cinépolis Multi-Site Enterprise IT Platform Operations</h1>
+        <p>Active Directory DS, GPO Deployment, POS Transaction Network, CCTV Segmentation & SLA Restoration</p>
+      </div>
+      <div class="header-meta">
+        <div><strong>Lead Systems Associate:</strong> Nilay Chavhan</div>
+        <div><strong>Company:</strong> Cinépolis India Pvt. Ltd. | Mumbai, India</div>
+        <div><strong>Environment:</strong> Windows Server 2022 | Active Directory | Aruba Switching | Edge Firewalls</div>
+        <div><strong>Duration:</strong> February 2025 – August 2025</div>
+        <div><strong>Classification:</strong> Verified Production Case Study</div>
+      </div>
+    </header>
+
+    <!-- 1. Executive Summary -->
+    <h2 class="section-title">1. Executive Summary & Production Scope</h2>
+    <div class="card">
+      <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.65;">
+        Cinépolis India operates high-throughput multi-screen cinema complexes processing thousands of customer ticketing transactions daily. The on-premise infrastructure at each location requires 99.9% platform availability across Point-of-Sale (POS) ticketing terminals, automated kiosk networks, administrative management workstations, digital cinema projection servers, and high-density CCTV surveillance networks.
+      </p>
+      <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-top: 0.8rem;">
+        <strong>Production Responsibilities:</strong> As IT & Platform Support Associate, Nilay Chavhan was directly responsible for:
+      </p>
+      <ul style="padding-left: 1.2rem; color: #cbd5e1; font-size: 0.85rem; line-height: 1.7; margin-top: 0.6rem;">
+        <li>Centralized administration of <strong>Windows Server 2022 Active Directory Domain Services (AD DS)</strong>, Organizational Units (OUs), Group Policy Objects (GPOs), and internal DNS/DHCP scopes supporting 100+ endpoints.</li>
+        <li>Layer 2/3 network segmentation across Aruba enterprise switches, isolating sensitive payment POS subnets from guest Wi-Fi and CCTV traffic.</li>
+        <li>Edge firewall traffic shaping and Quality of Service (QoS) enforcement, ensuring transactional ticketing APIs received strict bandwidth priority over bulk web browsing.</li>
+        <li>Primary leased-line circuit fault diagnosis and vendor coordination with telecom ISPs (Airtel, Tata Tele) to restore fiber links within strict 4-hour MTTR penalty windows.</li>
+      </ul>
+    </div>
+
+    <!-- Measurable KPIs -->
+    <div class="grid-2">
+      <div class="metric-box">
+        <div class="metric-val">99.9%</div>
+        <div class="metric-lbl">Platform Availability across Cinema POS & Ticketing</div>
+      </div>
+      <div class="metric-box" style="border-left-color: var(--accent-purple);">
+        <div class="metric-val">100+ Endpoints</div>
+        <div class="metric-lbl">Active Directory Domain Clients Managed via GPO</div>
+      </div>
+      <div class="metric-box" style="border-left-color: var(--accent-blue);">
+        <div class="metric-val">&lt; 4 Hours</div>
+        <div class="metric-lbl">Leased-Line Telecom MTTR Recovery SLA</div>
+      </div>
+      <div class="metric-box" style="border-left-color: #f59e0b;">
+        <div class="metric-val">Zero Outages</div>
+        <div class="metric-lbl">POS Ticketing Platform Blackouts during Showtimes</div>
+      </div>
+    </div>
+
+    <!-- 2. Architecture & VLAN Segmentation -->
+    <h2 class="section-title">2. Cinema Infrastructure Network Architecture</h2>
+    <div class="card">
+      <div class="diag-box">
++-----------------------------------------------------------------------------------+
+|                        TELECOM LEASED LINE (AIRTEL / TATA)                        |
+|                     Primary Leased Line (100M) + Backup WAN (50M)                 |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|                           EDGE PERIMETER FIREWALL                                 |
+|   - QoS Bandwidth Prioritization: POS Ticketing APIs > Guest Wi-Fi                |
+|   - Web/Content Filtering & Outbound Security Inspection                          |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|                        ARUBA 2930F CORE / ACCESS SWITCHES                         |
+|   Trunk 802.1Q | LACP LAG Uplinks | Native Management VLAN 10                     |
++--------------------+--------------------+--------------------+--------------------+
+                     |                    |                    |
+                     v                    v                    v
++--------------------+   +----------------+   +----------------+   +----------------+
+|  VLAN 20: POS APIS |   | VLAN 30: ADMIN |   | VLAN 40: CCTV  |   | VLAN 50: GUEST |
+| 192.168.20.0/24    |   | 192.168.30.0/24|   | 192.168.40.0/24|   | 192.168.50.0/24|
+| POS Terminals      |   | AD DS Domain   |   | IP Cameras     |   | Public Wi-Fi   |
+| Strict Isolation   |   | Controllers    |   | Isolated NVR   |   | Rate Limited   |
++--------------------+   +----------------+   +----------------+   +----------------+
+      </div>
+    </div>
+
+    <!-- 3. Active Directory & Platform Administration -->
+    <h2 class="section-title">3. Active Directory & Systems Administration</h2>
+    <div class="card">
+      <ul style="padding-left: 1.2rem; color: #cbd5e1; font-size: 0.85rem; line-height: 1.7;">
+        <li><strong>AD DS & OU Hierarchy:</strong> Organized domain objects into structured Organizational Units (<code>OU=POS_Terminals</code>, <code>OU=BoxOffice_Staff</code>, <code>OU=Cinema_Servers</code>).</li>
+        <li><strong>Group Policy Object (GPO) Deployment:</strong> Enforced security baselines, USB mass-storage restrictions on POS kiosks, automated desktop lockouts, and scheduled background patch updates.</li>
+        <li><strong>DHCP & DNS Architecture:</strong> Configured Windows Server DHCP scopes with 8-hour lease durations for dynamic terminals and reserved static bindings for network printers and payment pin-pads.</li>
+        <li><strong>Disaster Recovery Drills:</strong> Executed monthly scheduled system state backup restorations ensuring zero data loss in case of hardware storage corruption.</li>
+      </ul>
+    </div>
+
+    <!-- 4. Production Incidents Resolved -->
+    <h2 class="section-title">4. Production Incidents & Operational Resolutions</h2>
+    <div class="card">
+      <h3 style="font-size: 1rem; color: #ef4444; margin-bottom: 0.4rem;">
+        Incident: POS Terminal Duplicate IP Conflict during Peak Weekend Box-Office
+      </h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+        <strong>Symptom:</strong> Box-office terminal #4 suddenly lost database connectivity to the central ticketing server 30 minutes before movie showtime, throwing transaction timeout errors.<br>
+        <strong>Investigation:</strong> Executed <code>arp -a</code> on the local gateway and discovered two distinct MAC addresses flapping on IP <code>192.168.20.14</code>. A newly deployed handheld concession scanner had been statically assigned an IP falling within the active dynamic DHCP pool.<br>
+        <strong>Remediation:</strong> Reconfigured the DHCP server to exclude static reservation ranges (<code>192.168.20.1</code> to <code>192.168.20.50</code>), assigned the scanner a dedicated DHCP reservation, and issued <code>ipconfig /release && ipconfig /renew</code> on the box-office terminal. Uptime restored in under 8 minutes.
+      </p>
+    </div>
+
+    <!-- 5. As-Built Sign-Off -->
+    <h2 class="section-title">5. As-Built Verification & Sign-Off Checklist</h2>
+    <div class="card">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ 99.9% SLA Maintained</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Zero ticketing outage penalties incurred across 7-month operational tenure.</div>
+        </div>
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ Secure VLAN Segmentation</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">POS and payment networks strictly isolated from CCTV and guest Wi-Fi.</div>
+        </div>
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ GPO Hardening Enforced</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Restricted USB access and standardized software environments across 100+ endpoints.</div>
+        </div>
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ Telecom Circuit Recovery</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">All leased line outages coordinated and resolved within the 4-hour vendor MTTR.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="action-bar">
+      <div style="font-size: 0.8rem; color: var(--text-muted);">
+        Confidential Enterprise Technical Documentation • Nilay Chavhan Portfolio Architecture Reference
+      </div>
+      <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+  </div>
+</body>
+</html>
