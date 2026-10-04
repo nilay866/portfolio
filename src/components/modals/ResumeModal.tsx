@@ -38,23 +38,28 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
 
           <div className="resume-modal-actions">
-            <button type="button" className="btn-secondary btn-sm" onClick={handlePrint}>
-              <Printer size={14} className="text-blue" /> Print / Save PDF
+            <button type="button" className="btn-secondary btn-sm" onClick={handlePrint} title="Print or save as PDF">
+              <Printer size={14} className="text-blue" />
+              <span className="btn-text-responsive">Print / PDF</span>
             </button>
             <a
               href={`${import.meta.env.BASE_URL}NILAY_CHAVHAN_MASTER_CV.txt`}
               download="Nilay_Chavhan_CV.txt"
               className="btn-secondary btn-sm"
+              title="Download raw plaintext CV"
             >
-              <Download size={14} /> Raw Plaintext
+              <Download size={14} />
+              <span className="btn-text-responsive">Raw Text</span>
             </a>
             <a
               href={`${import.meta.env.BASE_URL}Nilay_Chavhan_Executive_CV.html`}
               target="_blank"
               rel="noreferrer"
               className="btn-primary btn-sm"
+              title="Open full page in new tab"
             >
-              <ExternalLink size={14} /> Full Page
+              <ExternalLink size={14} />
+              <span className="btn-text-responsive">Full Page</span>
             </a>
             <button
               type="button"
@@ -62,7 +67,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               onClick={onClose}
               aria-label="Close modal"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
         </div>

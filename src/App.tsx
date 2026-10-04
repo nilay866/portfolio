@@ -886,58 +886,33 @@ export default function App() {
       {/* ── INTERACTIVE TOPOLOGY & DIAGRAM MODAL ── */}
       {activeDiagramDomainId && (
         <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(5, 8, 16, 0.88)',
-            backdropFilter: 'blur(8px)',
-            zIndex: 1000,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '1rem'
-          }}
+          className="modal-backdrop"
           onClick={() => setActiveDiagramDomainId(null)}
+          role="dialog"
+          aria-modal="true"
         >
           <div
-            style={{
-              width: '100%',
-              maxWidth: '1200px',
-              maxHeight: '92vh',
-              background: '#0f172a',
-              border: '1px solid rgba(148, 163, 184, 0.2)',
-              borderRadius: '0.75rem',
-              overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
+            className="resume-modal-window"
+            style={{ maxWidth: '1200px' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div
-              style={{
-                padding: '0.85rem 1.25rem',
-                borderBottom: '1px solid rgba(148, 163, 184, 0.1)',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                background: '#090d16'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Network size={16} style={{ color: 'var(--teal-300)' }} />
-                <span style={{ fontWeight: 600, color: 'var(--slate-200)', fontSize: '0.9rem' }}>
+            <div className="resume-modal-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1, minWidth: 0 }}>
+                <Network size={16} style={{ color: 'var(--teal-300)', flexShrink: 0 }} />
+                <span style={{ fontWeight: 600, color: 'var(--slate-200)', fontSize: '0.9rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   Interactive Architecture Schematic: {activeDiagramDomainId.toUpperCase()}
                 </span>
               </div>
               <button
                 type="button"
-                className="bc-social-btn"
+                className="modal-close-btn"
                 onClick={() => setActiveDiagramDomainId(null)}
+                aria-label="Close schematic viewer"
               >
                 <X size={18} />
               </button>
             </div>
-            <div style={{ flex: 1, overflowY: 'auto', padding: '1rem' }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '0.85rem' }}>
               <InteractiveDiagram
                 domainId={activeDiagramDomainId}
                 selectedFirewallId={selectedFirewallId}

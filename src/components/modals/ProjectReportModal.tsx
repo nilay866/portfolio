@@ -41,123 +41,53 @@ export const ProjectReportModal: React.FC<ProjectReportModalProps> = ({
   };
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100vw',
-      height: '100vh',
-      backgroundColor: 'rgba(5, 7, 15, 0.88)',
-      backdropFilter: 'blur(8px)',
-      zIndex: 9999,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '1rem'
-    }}>
-      <div style={{
-        background: '#0d1322',
-        border: '1px solid rgba(255, 255, 255, 0.14)',
-        borderRadius: '12px',
-        width: '100%',
-        maxWidth: '1200px',
-        height: '92vh',
-        display: 'flex',
-        flexDirection: 'column',
-        boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.15)',
-        overflow: 'hidden'
-      }}>
+    <div className="modal-backdrop" onClick={handleClose} role="dialog" aria-modal="true">
+      <div className="resume-modal-window" style={{ maxWidth: '1200px' }} onClick={(e) => e.stopPropagation()}>
         {/* Modal Top Header */}
-        <div style={{
-          padding: '12px 18px',
-          background: 'rgba(255, 255, 255, 0.03)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '8px'
-        }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{
-                fontSize: '0.68rem',
-                fontWeight: 800,
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-                background: 'rgba(56, 189, 248, 0.15)',
-                color: '#38bdf8',
-                padding: '2px 8px',
-                borderRadius: '4px',
-                border: '1px solid rgba(56, 189, 248, 0.3)'
-              }}>
+        <div className="resume-modal-header">
+          <div className="resume-modal-title-wrap" style={{ maxWidth: 'calc(100% - 130px)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span className="badge-pill-primary">
                 Engineering Whitepaper
               </span>
-              <span style={{ fontSize: '0.82rem', color: '#94a3b8' }}>
+              <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
                 {currentReport.subtitle}
               </span>
             </div>
-            <h2 style={{ fontSize: '1.15rem', color: '#ffffff', margin: '4px 0 0 0', fontWeight: 800 }}>
+            <h2 className="resume-modal-heading" style={{ marginTop: '2px', wordBreak: 'break-word' }}>
               {currentReport.name}
             </h2>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="resume-modal-actions">
             <button
               onClick={handlePrint}
-              style={{
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#ffffff',
-                padding: '7px 12px',
-                borderRadius: '6px',
-                fontSize: '0.78rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
+              type="button"
+              className="btn-secondary btn-sm"
+              title="Print or save report as PDF"
             >
-              <Printer size={14} color="#38bdf8" /> Print / Save PDF
+              <Printer size={14} className="text-blue" />
+              <span className="btn-text-responsive">Print / PDF</span>
             </button>
 
             <a
               href={reportHref}
               target="_blank"
               rel="noreferrer"
-              style={{
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: '#ffffff',
-                padding: '7px 12px',
-                borderRadius: '6px',
-                fontSize: '0.78rem',
-                fontWeight: 600,
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
+              className="btn-primary btn-sm"
+              title="Open full report in a new tab"
             >
-              <ExternalLink size={14} /> Open in New Tab
+              <ExternalLink size={14} />
+              <span className="btn-text-responsive">Open Tab</span>
             </a>
 
             <button
               onClick={handleClose}
-              style={{
-                background: 'rgba(239, 68, 68, 0.15)',
-                border: '1px solid rgba(239, 68, 68, 0.3)',
-                color: '#f87171',
-                padding: '7px 10px',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center'
-              }}
+              type="button"
+              className="modal-close-btn"
               title="Close Report Viewer"
             >
-              <X size={16} />
+              <X size={18} />
             </button>
           </div>
         </div>
@@ -169,7 +99,9 @@ export const ProjectReportModal: React.FC<ProjectReportModalProps> = ({
           padding: '8px 16px',
           background: '#090d16',
           borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
-          overflowX: 'auto'
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none'
         }}>
           {reportsList.map((rep) => {
             const isSelected = selectedDomainId === rep.domainId;
@@ -189,7 +121,8 @@ export const ProjectReportModal: React.FC<ProjectReportModalProps> = ({
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
                 }}
               >
                 {rep.domainId === 'network' && <Network size={14} color="#38bdf8" />}
@@ -206,17 +139,12 @@ export const ProjectReportModal: React.FC<ProjectReportModalProps> = ({
         </div>
 
         {/* Embedded Iframe Body */}
-        <div style={{ flex: 1, position: 'relative', width: '100%', height: '100%', background: '#090d16' }}>
+        <div className="resume-modal-body">
           <iframe
             id="report-iframe-viewer"
             src={reportHref}
             title={currentReport.name}
-            style={{
-              width: '100%',
-              height: '100%',
-              border: 'none',
-              backgroundColor: '#090d16'
-            }}
+            className="resume-iframe"
           />
         </div>
       </div>

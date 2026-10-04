@@ -473,9 +473,9 @@ export const NetworkDiagram: React.FC<NetworkDiagramProps> = ({
       {/* Diagnostics Telemetry Strip */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(5, 1fr)',
-        gap: '4px',
-        padding: '5px 10px',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+        gap: '6px',
+        padding: '6px 10px',
         background: 'rgba(10, 16, 30, 0.9)',
         borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
         fontSize: '0.7rem'
@@ -736,7 +736,7 @@ export const NetworkDiagram: React.FC<NetworkDiagramProps> = ({
       </div>
 
       {/* ── VECTOR ARCHITECTURE CANVAS ── */}
-      <div style={{ height: '330px', width: '100%' }}>
+      <div style={{ width: '100%', minHeight: '220px', maxHeight: '420px', aspectRatio: '960 / 440' }}>
         {renderSvgArchitecture()}
       </div>
 
@@ -749,10 +749,11 @@ export const NetworkDiagram: React.FC<NetworkDiagramProps> = ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        flexWrap: 'wrap',
         gap: '8px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.78rem' }}>
-          {isSpokeAlphaHealthy ? <CheckCircle2 size={16} color="#10b981" /> : <AlertCircle size={16} color="#ef4444" />}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.78rem', flex: 1, minWidth: '220px' }}>
+          {isSpokeAlphaHealthy ? <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0 }} /> : <AlertCircle size={16} color="#ef4444" style={{ flexShrink: 0 }} />}
           <span style={{ color: '#ffffff', fontWeight: 600 }}>
             {isSpokeAlphaHealthy
               ? 'ALL 21 ADVPN TUNNELS & BGP PEERS ESTABLISHED: Direct spoke shortcuts active across Northern, Western & Central enterprise plants.'
@@ -766,7 +767,8 @@ export const NetworkDiagram: React.FC<NetworkDiagramProps> = ({
           padding: '2px 8px', 
           borderRadius: '4px',
           background: isSpokeAlphaHealthy ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.25)',
-          color: isSpokeAlphaHealthy ? '#10b981' : '#f87171' 
+          color: isSpokeAlphaHealthy ? '#10b981' : '#f87171',
+          flexShrink: 0
         }}>
           {isSpokeAlphaHealthy ? 'CONNECTED (21/21 UP)' : 'FLOW HALTED'}
         </span>
