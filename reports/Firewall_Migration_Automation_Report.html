@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Architecture Whitepaper | Enterprise Firewall Migration Suite | Nilay Chavhan</title>
+  <style>
+    :root {
+      --bg: #060913;
+      --card-bg: #0d1322;
+      --card-border: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #f59e0b;
+      --accent-purple: #a855f7;
+      --accent-green: #10b981;
+      --accent-blue: #38bdf8;
+      --code-bg: #030712;
+      --code-border: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2.5rem 1.5rem;
+    }
+    .container { max-width: 1140px; margin: 0 auto; }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-title h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .header-title p { font-size: 1rem; color: #fbbf24; font-weight: 600; }
+    .header-meta { font-size: 0.8rem; color: var(--text-muted); text-align: right; }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 2.5rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1.4rem;
+      margin-bottom: 1.4rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .metric-box {
+      background: rgba(3, 7, 18, 0.7);
+      border: 1px solid var(--card-border);
+      padding: 1.2rem;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .metric-val { font-size: 1.6rem; font-weight: 800; color: #ffffff; }
+    .metric-lbl { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 1rem 0;
+      background: rgba(3, 7, 18, 0.4);
+    }
+    th, td { padding: 9px 12px; border: 1px solid var(--card-border); text-align: left; }
+    th { background: rgba(245, 158, 11, 0.15); color: #ffffff; font-weight: 700; }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      padding: 1.2rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      line-height: 1.55;
+      margin: 0.8rem 0;
+    }
+    .param-highlight {
+      background: rgba(245, 158, 11, 0.2);
+      border-left: 2px solid #f59e0b;
+      padding: 1px 4px;
+      color: #fbbf24;
+      font-weight: 600;
+    }
+    .diag-box {
+      background: #040711;
+      border: 1px solid #1e293b;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: #fbbf24;
+      line-height: 1.4;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .action-bar {
+      margin-top: 2.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn {
+      background: #d97706;
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+    }
+    .btn:hover { background: #b45309; }
+    @media print {
+      body { background: #ffffff; color: #000000; padding: 0.5in; }
+      .card, .metric-box { background: #ffffff; border-color: #cbd5e1; color: #000000; }
+      pre, .diag-box { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
+      th { background: #e2e8f0; color: #0f172a; }
+      th, td { border-color: #cbd5e1; }
+      .action-bar { display: none; }
+      .badge { border: 1px solid #000; color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-title">
+        <span class="badge">Production Engineering Whitepaper • Infrastructure Automation Engine</span>
+        <h1>Automated Enterprise Firewall Migration Suite</h1>
+        <p>1,091-Line PowerShell AST Migration Engine, 11-Stage Staged Deployment & 100% Parity Auditing</p>
+      </div>
+      <div class="header-meta">
+        <div><strong>Lead Engineer:</strong> Nilay Chavhan</div>
+        <div><strong>Role:</strong> Network Security & Systems Engineer</div>
+        <div><strong>Platforms:</strong> FortiGate 30E/50E (FortiOS 6.2) &rarr; FortiGate 30G/50G (FortiOS 7.2/7.4)</div>
+        <div><strong>Toolchain:</strong> Windows PowerShell AST | Regular Expressions | Diff Audit Suite</div>
+        <div><strong>Classification:</strong> Verified Production As-Built Documentation</div>
+      </div>
+    </header>
+
+    <!-- 1. Executive Summary & Objective -->
+    <h2 class="section-title">1. Executive Summary & Objective</h2>
+    <div class="card">
+      <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.65;">
+        Legacy regional branch locations (such as Regional Branch North, Regional Branch West, Regional Branch South, and Regional Branch Central) operated on end-of-life (EOL) FortiGate-30E and 50E firewalls running legacy FortiOS 6.2. Upgrading to modern hardware (FortiGate-30G and 50G running FortiOS 7.2 and 7.4) presented severe operational risks: manual re-keying across hundreds of firewall policies, VIPs, and VPN definitions was error-prone, risked human omission, and threatened business-hour blackouts.
+      </p>
+      <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-top: 0.8rem;">
+        <strong>The Architectural Objective:</strong> Author an automated, deterministic migration engine (<code>generate_migration.ps1</code>) leveraging <strong>Abstract Syntax Tree (AST)</strong> parsing. The engine parses raw legacy backup files, transforms hardware-dependent interface names (e.g., <code>wan1</code> &rarr; <code>wan</code>, <code>lan4</code> &rarr; <code>a</code>), unbinds factory virtual switches, strips invalid legacy UUIDs, and generates an <strong>11-stage dependency-ordered deployment script</strong>.
+      </p>
+    </div>
+
+    <!-- Measurable KPIs -->
+    <div class="grid-2">
+      <div class="metric-box">
+        <div class="metric-val">100% Parity</div>
+        <div class="metric-lbl">Address Objects, Groups, VIPs & Policies Validated</div>
+      </div>
+      <div class="metric-box" style="border-left-color: var(--accent-green);">
+        <div class="metric-val">Zero Downtime</div>
+        <div class="metric-lbl">Seamless Cutover across Regional Commercial Branches</div>
+      </div>
+      <div class="metric-box" style="border-left-color: var(--accent-blue);">
+        <div class="metric-val">1,091 Lines</div>
+        <div class="metric-lbl">Custom PowerShell AST Migration Parser Code</div>
+      </div>
+      <div class="metric-box" style="border-left-color: var(--accent-purple);">
+        <div class="metric-val">11 Levels</div>
+        <div class="metric-lbl">Dependency-Ordered Staged Execution Pipeline</div>
+      </div>
+    </div>
+
+    <!-- 2. Migration Architecture & Staged Execution Pipeline -->
+    <h2 class="section-title">2. 11-Stage Staged Execution Pipeline</h2>
+    <div class="card">
+      <div class="diag-box">
++-----------------------------------------------------------------------------------+
+|               LEVEL 0: FACTORY CLEANUP & VIRTUAL SWITCH TEARDOWN                  |
+| - Delete default policy 1 | Unbind fortilink | Delete virtual-switch "lan"        |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|               LEVELS 1-4: INTERFACES, NETWORKING & OBJECT PROVISIONING            |
+| - Level 1: System Interfaces (wan, lan, dmz, vlan tagging, static IP assignment)  |
+| - Level 2: DHCP Servers, DNS Proxies, and NTP time configuration                  |
+| - Level 3: Firewall Address Objects & FQDNs (Legacy UUIDs stripped)               |
+| - Level 4: Firewall Address Groups & Virtual IPs (VIP port forwarding)            |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|               LEVELS 5-7: VPN OVERLAYS, ROUTING & SECURITY PROFILES               |
+| - Level 5: IPsec Phase 1 Interfaces & Phase 2 Selectors                           |
+| - Level 6: SD-WAN Performance SLA Profiles & Health Probes                        |
+| - Level 7: UTM Security Profiles (AV, IPS, Web Filter, Application Control)       |
++-----------------------------------------+-----------------------------------------+
+                                          |
+                                          v
++-----------------------------------------------------------------------------------+
+|               LEVELS 8-10: POLICIES, ROUTING & ADMINISTRATIVE PARITY              |
+| - Level 8: Firewall Policies (Source/Destination Objects, NAT, Security Profiles)|
+| - Level 9: Static Routes, Blackhole Routes & Dynamic Routing (BGP/OSPF)           |
+| - Level 10: System Users, Syslog Ingestion, SNMP & Final Parity Validation Audit  |
++-----------------------------------------------------------------------------------+
+      </div>
+    </div>
+
+    <!-- 3. Complete Production Code Extracts -->
+    <h2 class="section-title">3. Production PowerShell Automation Code Extracts</h2>
+
+    <div class="card">
+      <h3 style="font-size: 1rem; color: #fff; margin-bottom: 0.6rem;">3.1 Migration Engine Extract (generate_migration.ps1)</h3>
+      <pre><code># ==============================================================================
+# POWERSHELL AST MIGRATION ENGINE: LEVEL 0 FACTORY TEARDOWN & REBIND
+# ==============================================================================
+
+function Generate-Level0-Cleanup {
+    [CmdletBinding()]
+    param([string]$TargetModel)
+
+    $sb = [System.Text.StringBuilder]::new()
+    $sb.AppendLine("# LEVEL 0: FACTORY DEFAULT TEARDOWN") | Out-Null
+    $sb.AppendLine("config firewall policy") | Out-Null
+    $sb.AppendLine("    delete 1") | Out-Null               # Delete factory allow-all policy
+    $sb.AppendLine("end") | Out-Null
+
+    # Unbind physical ports from default software switch
+    $sb.AppendLine("config system virtual-switch") | Out-Null
+    $sb.AppendLine("    delete lan") | Out-Null             # Release lan1..lan4 ports
+    $sb.AppendLine("end") | Out-Null
+
+    $sb.AppendLine("config system interface") | Out-Null
+    $sb.AppendLine("    edit fortilink") | Out-Null
+    $sb.AppendLine("        set status down") | Out-Null    # Prevent FortiSwitch takeover
+    $sb.AppendLine("    next") | Out-Null
+    $sb.AppendLine("end") | Out-Null
+
+    return $sb.ToString()
+}</code></pre>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size: 1rem; color: #fff; margin-bottom: 0.6rem;">3.2 Automated Parity Verification Script (check_addr_parity.ps1)</h3>
+      <pre><code># ==============================================================================
+# AUDIT SCRIPT: VERIFY 100% ADDRESS OBJECT PARITY BETWEEN LEGACY AND NEW CONFIG
+# ==============================================================================
+
+param(
+    [Parameter(Mandatory=$true)][string]$LegacyConfig,
+    [Parameter(Mandatory=$true)][string]$NewConfig
+)
+
+$legacyAddrs = Get-Content $LegacyConfig | Select-String 'edit "(.*?)"' | ForEach-Object { $_.Matches.Groups[1].Value }
+$newAddrs    = Get-Content $NewConfig    | Select-String 'edit "(.*?)"' | ForEach-Object { $_.Matches.Groups[1].Value }
+
+$missingInNew = $legacyAddrs | Where-Object { $_ -notin $newAddrs }
+
+if ($missingInNew.Count -eq 0) {
+    Write-Host "[SUCCESS] 100% Address Object Parity Confirmed. Total Objects: $($newAddrs.Count)" -ForegroundColor Green
+} else {
+    Write-Error "[FAILURE] Missing $($missingInNew.Count) objects in target configuration: $($missingInNew -join ', ')"
+}</code></pre>
+    </div>
+
+    <!-- 4. Forensic Troubleshooting -->
+    <h2 class="section-title">4. Forensic Incident Deep-Dive & Remediation</h2>
+    <div class="card">
+      <h3 style="font-size: 1rem; color: #ef4444; margin-bottom: 0.4rem;">
+        Incident: Factory Virtual Switch Port Lockup on FortiGate-30G (Case 17)
+      </h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+        <strong>Symptom:</strong> Staged Level 1 interface configurations threw CLI errors: <code>Interface lan1 is already in use by virtual-switch lan</code>, causing subsequent IP assignment and policy creation to fail.<br>
+        <strong>Investigation:</strong> Discovered that factory FortiOS 7.2 on 30G hardware ships with a virtual switch named <code>lan</code> binding ports <code>lan1</code> through <code>lan4</code> together. Interfaces cannot be reassigned or configured individually until the parent virtual switch is deleted.<br>
+        <strong>Remediation:</strong> Added Level 0 factory teardown to the PowerShell engine, explicitly purging <code>system virtual-switch lan</code> and deleting factory policy 1 before applying any interface commands.
+      </p>
+    </div>
+
+    <!-- 5. As-Built Sign-Off -->
+    <h2 class="section-title">5. As-Built Verification & Sign-Off Checklist</h2>
+    <div class="card">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ 100% Object Parity</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Verified across 15 firewalls using check_addr_parity.ps1.</div>
+        </div>
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ 100% Policy Parity</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Verified across 15 firewalls using check_policy_parity.ps1.</div>
+        </div>
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ Zero Cutover Downtime</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Regional Branch North, Regional Branch West, Regional Branch South, and Regional Branch Central cutovers executed with zero regressions.</div>
+        </div>
+        <div>
+          <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">✔ 11-Stage Pipeline</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Deterministic dependency ordering prevents circular configuration references.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="action-bar">
+      <div style="font-size: 0.8rem; color: var(--text-muted);">
+        Confidential Enterprise Technical Documentation • Nilay Chavhan Portfolio Architecture Reference
+      </div>
+      <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    </div>
+  </div>
+</body>
+</html>

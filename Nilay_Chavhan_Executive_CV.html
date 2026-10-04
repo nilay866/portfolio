@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nilay Chavhan - Curriculum Vitae</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e1b4b;
+      --accent: #4338ca;
+      --text: #0f172a;
+      --text-muted: #334155;
+      --border: #cbd5e1;
+      --bg-pill: #f1f5f9;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background-color: #f8fafc;
+      line-height: 1.45;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page-container {
+      max-width: 860px;
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 40px 48px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      border-radius: 8px;
+    }
+    .print-bar {
+      max-width: 860px;
+      margin: 15px auto 0 auto;
+      display: flex;
+      justifyContent: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: #1e1b4b;
+      border-radius: 6px;
+      color: #fff;
+    }
+    .btn-print {
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      font-weight: 700;
+      font-size: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-print:hover {
+      background: #4338ca;
+    }
+    header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+    }
+    .title-sub {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 2px;
+      margin-bottom: 6px;
+    }
+    .contact-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .contact-line a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .section-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+    .summary-text {
+      color: var(--text-muted);
+      text-align: justify;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5px;
+    }
+    .skill-category {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .skill-category strong {
+      color: var(--text);
+    }
+    .job-block {
+      margin-bottom: 12px;
+    }
+    .job-header {
+      display: flex;
+      justifyContent: space-between;
+      align-items: baseline;
+    }
+    .job-company {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .job-date {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .job-role {
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+    ul.job-bullets {
+      padding-left: 16px;
+      color: var(--text-muted);
+    }
+    ul.job-bullets li {
+      margin-bottom: 3.5px;
+    }
+    .edu-item {
+      display: flex;
+      justifyContent: space-between;
+      margin-bottom: 4px;
+    }
+    .edu-name {
+      font-weight: 700;
+      color: var(--text);
+    }
+    .edu-inst {
+      color: var(--text-muted);
+      font-size: 11.5px;
+    }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .cert-pill {
+      background: var(--bg-pill);
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      border-left: 3px solid var(--accent);
+    }
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000;
+      }
+      .print-bar {
+        display: none !important;
+      }
+      .page-container {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+      @page {
+        margin: 1.2cm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <div>
+      <strong>Nilay Chavhan</strong> — Executive Technical Curriculum Vitae
+    </div>
+    <button class="btn-print" onclick="window.print()">
+      🖨️ PRINT / SAVE AS PDF
+    </button>
+  </div>
+
+  <div class="page-container">
+    <header style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+      <div>
+        <h1>NILAY PRADIP CHAVHAN</h1>
+        <div class="title-sub">Network Security Engineer | Cyber Security Analyst | Infrastructure Specialist</div>
+        <div class="contact-line">
+          <span>📍 Navi Mumbai / Panvel, Maharashtra, India</span>
+          <span>📱 +91 8669226005</span>
+          <span>📧 <a href="mailto:nilaychavhan@gmail.com">nilaychavhan@gmail.com</a></span>
+          <span>🔗 <a href="https://www.linkedin.com/in/nilay-chavhan-272271188/" target="_blank">linkedin.com/in/nilay-chavhan-272271188</a></span>
+          <span>💻 <a href="https://github.com/nilay866" target="_blank">github.com/nilay866</a></span>
+        </div>
+      </div>
+      <div style="flex-shrink: 0;">
+        <img
+          src="/nilay-original.jpg"
+          alt="Nilay Chavhan"
+          style="width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; border: 2.5px solid #4338ca; box-shadow: 0 4px 14px rgba(67, 56, 202, 0.2);"
+        />
+      </div>
+    </header>
+
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+      Versatile, multi-disciplinary <strong>Network Security Engineer & Cyber Security Specialist</strong> with end-to-end production experience across perimeter defense (<strong>Fortinet FortiGate, Sophos XGS</strong>), centralized device orchestration (<strong>FortiManager, FortiAnalyzer</strong>), dynamic routing and VPN meshes (<strong>ADVPN, BGP, IPsec IKEv2, Dial-Up with EAP-TTLS</strong>), centralized SIEM/SOC engineering (<strong>Wazuh 4.x on GCP, MITRE ATT&CK</strong>), and Linux hypervisor administration (<strong>Ubuntu KVM, Netplan, Squid Proxy</strong>). Successfully architected, fully configured, and actively manage a multi-site network of <strong>21 enterprise firewalls</strong> across multi-tenant enterprise clients (pharmaceutical manufacturing, national bullion & precious metals, infrastructure conglomerates, and global freight logistics). Adept at resolving 7–11 L2/L3 security and infrastructure incidents per shift, performing zero-downtime hardware migrations with 100% object parity validation, and building automated security tools using Python and PowerShell.
+    </p>
+
+    <div class="section-title">Core Technical Competencies</div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <strong>Perimeter & Firewall Engineering:</strong> Fortinet FortiGate (FortiOS 7.2 / 7.4 / 7.6, FortiGate-1000F Core Hub down to 30G/50G/100F spokes), Sophos Firewall / XGS, SonicWall, Palo Alto Networks (exposure); FortiManager (centralized multi-tenant policy & device provisioning across 21+ sites), FortiAnalyzer (centralized logging & threat correlation), Web/URL Filtering, Application Control, Deep SSL/TLS Inspection, IPS/IDS, NAT/VIP Port-Forwarding, hit-counter verification (<code>diagnose firewall iprope</code>), dependency checks (<code>diagnose sys checkused</code>).
+      </div>
+      <div class="skill-category">
+        <strong>Enterprise Routing, Switching & Infrastructure:</strong> Hub-and-Spoke ADVPN (BGP Route Reflector AS 65000, dynamic shortcut tunnels), OSPF, Static Routing, Policy-Based Routing (PBR); SD-WAN Architecture (multi-ISP link aggregation, performance SLA probes, non-disruptive zone migrations); 802.1Q VLANs, Inter-VLAN Routing, Spanning Tree Protocol (STP), LACP Link Aggregation, completed <strong>2 greenfield enterprise network builds from scratch</strong> (Core & PoE switches, APs, segmented VLANs); Network Monitoring via <strong>LibreNMS</strong> (SNMP bandwidth & uptime monitoring).
+      </div>
+      <div class="skill-category">
+        <strong>VPN & Hybrid Cloud Interconnects:</strong> Route-based IPsec (IKEv1 / IKEv2 parameter negotiation, DH groups, DPD, NAT-T), Remote Access Dial-Up SSL-VPN / IPsec (Active Directory LDAP authentication, EAP-TTLS XML, FortiClient deployment), Hybrid Cloud connectivity integrating on-premises FortiGates with <strong>Google Cloud Platform (GCP)</strong> and <strong>Microsoft Azure</strong>.
+      </div>
+      <div class="skill-category">
+        <strong>SOC, Threat Detection & Endpoint Security:</strong> Wazuh SIEM 4.x (Manager, Indexer, Dashboard on Ubuntu/GCP), OpenSearch, Centralized Syslog (UDP 514), MITRE ATT&CK Framework Mapping (Brute Force T1110, User Execution T1204, Remote Services T1021), Custom Level 0 Child Rules (false-positive suppression), Adversary Simulation via <strong>Hydra</strong> to validate active response triggers, File Integrity Monitoring (FIM), <strong>Symantec Endpoint Protection Manager (SEPM)</strong> IP migration & deployment handbooks, <strong>Sophos Central EDR</strong> endpoint threat isolation.
+      </div>
+      <div class="skill-category">
+        <strong>Automation, DevOps & Web Tooling:</strong> Python 3 (automated parsers, data extraction, report generators, batch orchestrators), PowerShell (migration suite & parity auditing), Bash/Shell, Docker containerization, AWS (Terraform HCL, Lambda), GitHub Actions CI/CD; Web Application Engineering with Modern Vanilla JavaScript (ES6+), HTML5, CSS3, zero-dependency client-side architectures, and Web CLI terminal emulators.
+      </div>
+    </div>
+
+    <div class="section-title">Professional Experience</div>
+
+    <div class="job-block">
+      <div class="job-header">
+        <span class="job-company">Integrated Infosec India Pvt. Ltd.</span>
+        <span class="job-date">August 2026 — Present</span>
+      </div>
+      <div class="job-role">Cyber Security Analyst</div>
+      <div style="font-size: 11.5px; font-style: italic; color: #4338ca; margin-bottom: 6px;">
+        (Promoted from Cyber Security Intern, May 2026 — August 2026)
+      </div>
+      <ul class="job-bullets">
+        <li><strong>Multi-Vendor Firewall & Security Engineering:</strong> Configure, manage, and troubleshoot multi-vendor firewalls (Fortinet FortiGate FortiOS 7.2/7.4/7.6, Sophos Firewall, SonicWall; limited Palo Alto exposure) across 10–15+ enterprise clients spanning pharmaceutical, logistics, and real estate sectors.</li>
+        <li><strong>FortiManager & FortiAnalyzer Orchestration:</strong> Manage centralized policy and VPN configuration across 21 client sites via FortiManager; use FortiAnalyzer for centralized log visibility, traffic forensics, and SIEM monitoring.</li>
+        <li><strong>Greenfield Network Builds & Infrastructure:</strong> Designed end-to-end LAN/WAN infrastructure, completing 2 greenfield enterprise network builds from scratch (core switches, PoE switches, APs, and segmented 802.1Q VLANs).</li>
+        <li><strong>BGP Route Reflection & ADVPN Dynamic Mesh:</strong> Designed and deployed nationwide ADVPN architecture integrated with BGP Route Reflection at HO (AS 65000), disabling next-hop-self and enabling direct branch-to-branch shortcut tunnels without passing intermediate transit traffic through HO.</li>
+        <li><strong>SLA Ticket Resolution & Shift Triage:</strong> Resolve 7–11 network/security tickets per shift under SLA — policy creation, VPN-down troubleshooting, WAN link failover, tunnel migration, and NAT/DHCP.</li>
+        <li><strong>Wazuh SIEM & MITRE ATT&CK Mapping:</strong> Monitor and tune Wazuh SIEM detection rules across FortiGate, Sophos, Windows, and Linux/SSH log sources; completed full MITRE ATT&CK mapping (brute-force T1110.001, malware execution T1204.002, remote services T1021.004).</li>
+        <li><strong>Adversary Simulation & Testing:</strong> Validated SSH brute-force detection end-to-end using simulated attacks (Hydra) against production Wazuh alert rules, and validated Linux File Integrity Monitoring (FIM).</li>
+        <li><strong>Identity-Aware Access & Cloud Connectivity:</strong> Support access provisioning by syncing Active Directory groups to FortiGate for scoped, policy-based access control; integrated GCP and Azure cloud environments with on-prem FortiGates for secure hybrid connectivity.</li>
+        <li><strong>Network Availability & Telemetry:</strong> Monitor network performance, bandwidth, availability, and uptime via LibreNMS across managed client and ISP-side infrastructure.</li>
+      </ul>
+    </div>
+
+    <div class="job-block">
+      <div class="job-header">
+        <span class="job-company">Kanishka Software Private Limited</span>
+        <span class="job-date">February 2026 — May 2026</span>
+      </div>
+      <div class="job-role">IT Support Executive</div>
+      <ul class="job-bullets">
+        <li>Delivered technical support and enterprise application deployment for premier banking, financial, and multinational corporate client environments under strict SLAs.</li>
+        <li>Administered Active Directory (AD DS) user accounts, role delegation, access permissions, security groups, and password resets; supported Microsoft 365 (O365) services.</li>
+        <li>Diagnosed and resolved hardware, software, network connectivity, and operating system issues across Windows, macOS, and Linux client environments.</li>
+        <li>Triaged, tracked, and resolved enterprise technical support tickets under defined SLA turnaround times, maintaining standardized incident resolution documentation.</li>
+      </ul>
+    </div>
+
+    <div class="job-block">
+      <div class="job-header">
+        <span class="job-company">Cinépolis India Pvt. Ltd.</span>
+        <span class="job-date">February 2025 — August 2025</span>
+      </div>
+      <div class="job-role">IT & Platform Support Associate</div>
+      <ul class="job-bullets">
+        <li>Administered on-premise Windows Server Active Directory (AD DS, GPO, DNS, DHCP) and Linux server environments, managing user access privileges and ACLs for 100+ workstations and POS transaction systems.</li>
+        <li>Configured routers, switches, and firewalls; resolved IP/ACL overlap and access conflicts on network infrastructure under strict SLA.</li>
+        <li>Configured web and content filtering to block unauthorized and malicious site access per corporate security policy.</li>
+        <li>Coordinated with telecom ISPs and hardware vendors for leased-line restorations under strict 4-hour SLA penalty windows and conducted scheduled backup restoration drills to guarantee disaster recovery readiness.</li>
+      </ul>
+    </div>
+
+    <div class="job-block">
+      <div class="job-header">
+        <span class="job-company">Sound Solutions</span>
+        <span class="job-date">May 2019 — June 2019</span>
+      </div>
+      <div class="job-role">Technical Infrastructure Trainee</div>
+      <ul class="job-bullets">
+        <li>Executed structured Cat6 cabling, switch patch panel crimping, and 802.3 Ethernet termination for enterprise LAN buildouts.</li>
+        <li>Conducted Fluke cable certification testing, patch cord verification, and hardware diagnostic verifications.</li>
+      </ul>
+    </div>
+
+    <div class="section-title">Key Technical Projects</div>
+    <ul class="job-bullets">
+      <li><strong>Autonomous SOC Telemetry & IP-Ban Engine (<code>ip_manager.py</code>):</strong> Built custom Python daemons on Linux managing dynamic threat feeds for 21 firewalls with 90-day automated expiration and historical logging, eliminating brute-force scanners at the wire in sub-minute response times.</li>
+      <li><strong>Automated FortiClient VPN Profile Generator (<code>ScriptAutomation</code>):</strong> Wrote a Python automation tool (<code>vpn_script.py</code>, GitHub: <code>nilay866/ScriptAutomation</code>) compiling XML profiles supporting IKEv2 and EAP-TTLS Method 2 for AD LDAP, programmatically imported via <code>fcconfig</code>.</li>
+      <li><strong>FortiGate Web CLI & Diagnostic Reference Portal:</strong> Engineered an operational web portal and quick-reference diagnostic console (GitHub: <code>nilay866.github.io</code>) indexing mission-critical FortiOS CLI commands for BGP routing, IPsec tunnel debugging, packet sniffing, and flow traces.</li>
+      <li><strong>Cloud Infrastructure & Cost Tracking (IaC):</strong> Developed modular Terraform (HCL) and AWS Lambda scripts (GitHub: <code>nilay866/aws-cloud-cost-calculator</code>) to provision cloud resources and automatically track recurring compute and storage expenditure.</li>
+    </ul>
+
+    <div class="section-title">Education & Academic Credentials</div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-name">Master of Technology (M.Tech) in Computer Engineering</div>
+        <div class="edu-inst">Chhatrapati Shivaji Maharaj University (CSMU)</div>
+      </div>
+      <div class="job-date">2026</div>
+    </div>
+    <div class="edu-item" style="margin-top: 4px;">
+      <div>
+        <div class="edu-name">Bachelor of Engineering (B.E.) in Computer Engineering (CGPA: 7.75)</div>
+        <div class="edu-inst">CSMIT Panvel, University of Mumbai</div>
+      </div>
+      <div class="job-date">Graduated 2024</div>
+    </div>
+    <div class="edu-item" style="margin-top: 4px;">
+      <div>
+        <div class="edu-name">Diploma in Computer Engineering (70.29%)</div>
+        <div class="edu-inst">Saraswati Institute of Technology (SIOT), Kharghar</div>
+      </div>
+      <div class="job-date">Completed 2021</div>
+    </div>
+
+    <div class="section-title">Certifications & Industry Accreditations</div>
+    <div class="certs-grid">
+      <div class="cert-pill">
+        <strong>Fortinet Certified Associate (FCA)</strong> — Cybersecurity, Fortinet Training Institute
+      </div>
+      <div class="cert-pill">
+        <strong>Fortinet Certified Fundamentals (FCF)</strong> — Fortinet Training Institute
+      </div>
+      <div class="cert-pill">
+        <strong>FortiGate 7.6 Operator</strong> — Practical Core Administration & Firewall Policies
+      </div>
+      <div class="cert-pill">
+        <strong>Cisco CCNA (200-301)</strong> — Curriculum Trained & Enterprise Hands-On Labs
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

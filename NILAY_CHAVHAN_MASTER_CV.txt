@@ -1,0 +1,88 @@
+NILAY PRADIP CHAVHAN
+Network Security Engineer | Cyber Security Analyst | Infrastructure Specialist
+Email: nilaychavhan@gmail.com
+LinkedIn: https://www.linkedin.com/in/nilay-chavhan-272271188/
+GitHub: https://github.com/nilay866
+
+================================================================================
+PROFESSIONAL SUMMARY
+================================================================================
+Versatile, multi-disciplinary Network Security Engineer & Cyber Security Specialist with end-to-end production experience across perimeter defense (Fortinet FortiGate, Sophos XGS), centralized device orchestration (FortiManager, FortiAnalyzer), dynamic routing and VPN meshes (ADVPN, BGP, IPsec IKEv2, Dial-Up with EAP-TTLS), centralized SIEM/SOC engineering (Wazuh 4.x on GCP, MITRE ATT&CK), and Linux hypervisor administration (Ubuntu KVM, Netplan, Squid Proxy). Successfully architected, fully configured, and actively manage a multi-site network of 21 enterprise firewalls across multi-tenant enterprise clients (pharmaceutical manufacturing, national bullion & precious metals, infrastructure conglomerates, and global freight logistics). Adept at resolving 7-11 L2/L3 security and infrastructure incidents per shift, performing zero-downtime hardware migrations with 100% object parity validation, and building automated security tools using Python and PowerShell.
+
+================================================================================
+CORE TECHNICAL COMPETENCIES
+================================================================================
+- Perimeter & Firewall Engineering: Fortinet FortiGate (FortiOS 7.2 / 7.4 / 7.6, FortiGate-1000F Core Hub down to 30G/50G/100F spokes), Sophos Firewall / XGS, SonicWall, Palo Alto Networks (exposure); FortiManager (centralized multi-tenant policy & device provisioning across 21+ sites), FortiAnalyzer (centralized logging & threat correlation), Web/URL Filtering, Application Control, Deep SSL/TLS Inspection, IPS/IDS, NAT/VIP Port-Forwarding, hit-counter verification (diagnose firewall iprope), dependency checks (diagnose sys checkused).
+- Enterprise Routing, Switching & Infrastructure: Hub-and-Spoke ADVPN (BGP Route Reflector AS 65000, dynamic shortcut tunnels), OSPF, Static Routing, Policy-Based Routing (PBR); SD-WAN Architecture (multi-ISP link aggregation, performance SLA probes, non-disruptive zone migrations); 802.1Q VLANs, Inter-VLAN Routing, Spanning Tree Protocol (STP), LACP Link Aggregation, completed 2 greenfield enterprise network builds from scratch (Core & PoE switches, APs, segmented VLANs); Network Monitoring via LibreNMS (SNMP bandwidth & uptime monitoring).
+- VPN & Hybrid Cloud Interconnects: Route-based IPsec (IKEv1 / IKEv2 parameter negotiation, DH groups, DPD, NAT-T), Remote Access Dial-Up SSL-VPN / IPsec (Active Directory LDAP authentication, EAP-TTLS XML, FortiClient deployment), Hybrid Cloud connectivity integrating on-premises FortiGates with Google Cloud Platform (GCP) and Microsoft Azure.
+- SOC, Threat Detection & Endpoint Security: Wazuh SIEM 4.x (Manager, Indexer, Dashboard on Ubuntu/GCP), OpenSearch, Centralized Syslog (UDP 514), MITRE ATT&CK Framework Mapping (Brute Force T1110, User Execution T1204, Remote Services T1021), Custom Level 0 Child Rules (false-positive suppression), Adversary Simulation via Hydra to validate active response triggers, File Integrity Monitoring (FIM), Symantec Endpoint Protection Manager (SEPM) IP migration & deployment handbooks, Sophos Central EDR endpoint threat isolation.
+- Automation, DevOps & Web Tooling: Python 3 (automated parsers, data extraction, report generators, batch orchestrators), PowerShell (migration suite & parity auditing), Bash/Shell, Docker containerization, AWS (Terraform HCL, Lambda), GitHub Actions CI/CD; Web Application Engineering with Modern Vanilla JavaScript (ES6+), HTML5, CSS3, zero-dependency client-side architectures, and Web CLI terminal emulators.
+
+================================================================================
+PROFESSIONAL EXPERIENCE
+================================================================================
+Integrated Infosec India Pvt. Ltd. | Navi Mumbai, India
+Cyber Security Analyst
+August 2026 - Present
+(Promoted from Cyber Security Intern, May 2026 - August 2026)
+
+- Multi-Vendor Firewall & Security Engineering: Configure, manage, and troubleshoot multi-vendor firewalls (Fortinet FortiGate FortiOS 7.2/7.4/7.6, Sophos Firewall, SonicWall; limited Palo Alto exposure) across 10-15+ enterprise clients spanning pharmaceutical, logistics, and real estate sectors.
+- FortiManager & FortiAnalyzer Orchestration: Manage centralized policy and VPN configuration across 21 client sites via FortiManager; use FortiAnalyzer for centralized log visibility, traffic forensics, and SIEM monitoring.
+- Greenfield Network Builds & Infrastructure: Designed end-to-end LAN/WAN infrastructure, completing 2 greenfield enterprise network builds from scratch (core switches, PoE switches, APs, and segmented 802.1Q VLANs).
+- BGP Route Reflection & ADVPN Mesh: Designed and deployed nationwide ADVPN architecture integrated with BGP Route Reflection at HO. Configured Static Routing, OSPF, and SD-WAN rules for multi-ISP WAN link resilience.
+- SLA Ticket Resolution & Shift Triage: Resolve 7-11 network/security tickets per shift under SLA — policy creation, VPN-down troubleshooting, WAN link failover, tunnel migration, and NAT/DHCP.
+- Wazuh SIEM & MITRE ATT&CK Mapping: Monitor and tune Wazuh SIEM detection rules across FortiGate, Sophos, Windows, and Linux/SSH log sources; completed full MITRE ATT&CK mapping (brute-force T1110.001, malware execution T1204.002, remote services T1021.004).
+- Adversary Simulation & Testing: Validated SSH brute-force detection end-to-end using simulated attacks (Hydra) against production Wazuh alert rules, and validated Linux File Integrity Monitoring (FIM).
+- Identity-Aware Access & Cloud Connectivity: Support access provisioning by syncing Active Directory groups to FortiGate for scoped, policy-based access control; integrated GCP and Azure cloud environments with on-prem FortiGates for secure hybrid connectivity.
+- Network Availability & Telemetry: Monitor network performance, bandwidth, availability, and uptime via LibreNMS across managed client and ISP-side infrastructure.
+
+Kanishka Software Private Limited | Mumbai, India
+IT Support Executive
+February 2026 - May 2026
+
+- Delivered technical support and enterprise application deployment for premier banking, financial, and multinational corporate client environments under strict SLAs.
+- Administered Active Directory (AD DS) user accounts, role delegation, access permissions, security groups, and password resets; supported Microsoft 365 (O365) services.
+- Diagnosed and resolved hardware, software, network connectivity, and operating system issues across Windows, macOS, and Linux client environments.
+- Triaged, tracked, and resolved enterprise technical support tickets under defined SLA turnaround times, maintaining standardized incident resolution documentation.
+
+Cinépolis India Pvt. Ltd. | Mumbai, India
+IT & Platform Support Associate
+February 2025 - August 2025
+
+- Administered on-premise Windows Server Active Directory (AD DS, GPO, DNS, DHCP) and Linux server environments, managing user access privileges and ACLs for 100+ workstations and POS transaction systems.
+- Diagnosed and resolved Layer 2/3 network incidents including IP address conflicts, default gateway misconfigurations, switch trunk port tagging errors, and CCTV network disruptions.
+- Enforced edge firewall security policies and web-filtering rules to prioritize business-critical ticketing traffic and eliminate unauthorized bandwidth consumption.
+- Coordinated with telecom ISPs and hardware vendors for leased-line restorations under strict 4-hour SLA penalty windows and conducted scheduled backup restoration drills to guarantee disaster recovery readiness.
+
+Sound Solutions | Mumbai, India
+Technical Infrastructure Trainee
+May 2019 - June 2019
+
+- Executed structured Cat6 cabling, switch patch panel crimping, and 802.3 Ethernet termination for enterprise LAN buildouts.
+- Conducted Fluke cable certification testing, patch cord verification, and hardware diagnostic verifications.
+
+================================================================================
+KEY TECHNICAL PROJECTS
+================================================================================
+- Automated FortiClient VPN Profile Generator (ScriptAutomation): Wrote a Python automation tool (vpn_script.py, available on GitHub: nilay866/ScriptAutomation) that captures gateway parameters, compiles XML connection profiles supporting IKEv1/IKEv2 and EAP-TTLS (Method 2) for AD LDAP, and programmatically imports them into FortiClient via fcconfig.
+- Autonomous SOC Telemetry & IP-Ban Engine: Built custom Python daemons (ip-ban-manager.py) on Linux to tail live Wazuh alerts.json event streams, parse high-severity brute-force and port-scan detections, and programmatically generate perimeter firewall blocklist objects to isolate threats in real time.
+- FortiGate Web CLI & Diagnostic Reference Portal: Engineered an operational web portal and quick-reference diagnostic console (GitHub: nilay866.github.io) indexing mission-critical FortiOS CLI commands for BGP routing, IPsec tunnel debugging, packet sniffing, and flow traces.
+- Cloud Infrastructure & Cost Tracking (IaC): Developed modular Terraform (HCL) and AWS Lambda scripts (GitHub: nilay866/aws-cloud-cost-calculator) to provision cloud resources and automatically track recurring compute and storage expenditure.
+
+================================================================================
+EDUCATION & ACADEMIC CREDENTIALS
+================================================================================
+- Master of Technology (M.Tech) in Computer Engineering (2026)
+  Chhatrapati Shivaji Maharaj University (CSMU)
+- Bachelor of Engineering (B.E.) in Computer Engineering (2024, CGPA: 7.75)
+  CSMIT Panvel, University of Mumbai
+- Diploma in Computer Engineering (2021, 70.29%)
+  Saraswati Institute of Technology (SIOT), Kharghar
+
+================================================================================
+CERTIFICATIONS & ACCREDITATIONS
+================================================================================
+- Fortinet Certified Associate (FCA) in Cybersecurity - Fortinet Training Institute
+- Fortinet Certified Fundamentals (FCF) in Cybersecurity - Fortinet Training Institute
+- FortiGate 7.6 Operator - Practical Core Administration & Firewall Policies
+- Cisco Certified Network Associate (CCNA 200-301) - Curriculum Trained & Enterprise Hands-On Labs
